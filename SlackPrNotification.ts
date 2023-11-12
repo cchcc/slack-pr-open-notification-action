@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 const url: string = process.env.SLACK_WEBHOOK_URL;
+const slackChannel = process.env.SLACK_CHANNEL;
+const slackUserName = process.env.SLACK_USER_NAME;
 const prNum: string = process.env.PULL_REQUEST_NUMBER;
 const prTitle: string = process.env.PULL_REQUEST_TITLE;
 const prUrl: string = process.env.PULL_REQUEST_URL;
@@ -31,6 +33,8 @@ const makeCompact: boolean = process.env.MAKE_COMPACT.toLowerCase() === "true";
 
 if (makePretty) {
     const message: Object = {
+        channel: slackChannel,
+        username: slackUserName,
         attachments: [
             {
                 color: "#00ff00",
@@ -82,6 +86,8 @@ if (makePretty) {
     axios.post(url, message);
 } else if (makeCompact) {
     const message: Object = {
+        channel: slackChannel,
+        username: slackUserName,
         blocks: [
             {
                 type: "section",
@@ -111,6 +117,8 @@ if (makePretty) {
     axios.post(url, message);
 } else {
     const message: Object = {
+        channel: slackChannel,
+        username: slackUserName,
         blocks: [
             {
                 type: "section",

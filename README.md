@@ -20,6 +20,8 @@ jobs:
     - name: Notify slack pr open
       env: 
         SLACK_WEBHOOK_URL : ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_CHANNEL : 
+        SLACK_USER_NAME : 
         PULL_REQUEST_NUMBER : ${{ github.event.pull_request.number }}
         PULL_REQUEST_TITLE : ${{ github.event.pull_request.title }}
         PULL_REQUEST_AUTHOR_NAME : ${{ github.event.pull_request.user.login }}

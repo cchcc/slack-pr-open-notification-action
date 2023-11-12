@@ -2,6 +2,8 @@
 exports.__esModule = true;
 var axios_1 = require("axios");
 var url = process.env.SLACK_WEBHOOK_URL;
+var slackChannel = process.env.SLACK_CHANNEL;
+var slackUserName = process.env.SLACK_USER_NAME;
 var prNum = process.env.PULL_REQUEST_NUMBER;
 var prTitle = process.env.PULL_REQUEST_TITLE;
 var prUrl = process.env.PULL_REQUEST_URL;
@@ -27,6 +29,8 @@ var makePretty = process.env.MAKE_PRETTY.toLowerCase() === "true"; //Priority is
 var makeCompact = process.env.MAKE_COMPACT.toLowerCase() === "true";
 if (makePretty) {
     var message = {
+        channel: slackChannel,
+        username: slackUserName,
         attachments: [
             {
                 color: "#00ff00",
@@ -79,6 +83,8 @@ if (makePretty) {
 }
 else if (makeCompact) {
     var message = {
+        channel: slackChannel,
+        username: slackUserName,
         blocks: [
             {
                 type: "section",
@@ -109,6 +115,8 @@ else if (makeCompact) {
 }
 else {
     var message = {
+        channel: slackChannel,
+        username: slackUserName,
         blocks: [
             {
                 type: "section",
